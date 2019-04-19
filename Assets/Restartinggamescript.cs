@@ -19,7 +19,8 @@ public class Restartinggamescript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(){
-    	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    	PlayerPrefs.SetInt("Displayscore", Scorescript.scoreval);
+    	SceneManager.LoadScene("Resultdisplay");
     	if(PlayerPrefs.GetInt("Highscore")<Scorescript.scoreval)PlayerPrefs.SetInt("Highscore", Scorescript.scoreval);
     }
 }
