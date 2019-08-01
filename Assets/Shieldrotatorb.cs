@@ -16,11 +16,19 @@ public class Shieldrotatorb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = Input.GetAxisRaw("Horizontal");
-        if(movement>0f)movement_sign=-1f;
-        else if(movement<0f)movement_sign=1f;
-        else movement_sign=0f;
+        if(Input.touchCount > 0){
+            Touch touch = Input.GetTouch(0);
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPosition.z=0f;
         
+            movement = touchPosition.x;
+            //movement = Input.GetAxisRaw("Horizontal");
+            if(movement>0f)movement_sign=-1f;
+            else if(movement<0f)movement_sign=1f;
+            else movement_sign=0f;
+        }else{
+            movement_sign=0f;
+        }
     }
 
     private void FixedUpdate(){
